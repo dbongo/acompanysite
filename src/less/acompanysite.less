@@ -62,14 +62,12 @@ h1, h2, h3, h4, h5, h6 {
 
 // Restyled Primary Buttons
 .btn-primary {
-    //.button-variant(white; @brand-primary; @brand-primary);
     .button-variant(white; transparent; white);
     .heading-font;
     font-weight: 700;
 }
 
 .btn-xl {
-    //.button-variant(white; @brand-primary; @brand-primary);
     .button-variant(white; transparent; white);
     .heading-font;
     font-weight: 700;
@@ -80,11 +78,11 @@ h1, h2, h3, h4, h5, h6 {
 
 // Custom Navigation Bar
 .navbar-default {
-    background-color: @gray-darkest;
+    // background-color: @gray-darkest;
+    background-color: white;
     border-color: transparent;
     .navbar-brand {
         color: white;
-        //.script-font;
         .font-thin;
         &:hover,
         &:focus,
@@ -97,10 +95,8 @@ h1, h2, h3, h4, h5, h6 {
         border-color: fade(white, 2%);
     }
     .navbar-toggle {
-        //background-color: @brand-primary;
         background-color: transparent;
         border-color: white;
-        // border-color: @brand-primary;
         .icon-bar {
             background-color: white;
         }
@@ -126,16 +122,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     .navbar-nav>.active>a {
         border-radius: 0;
-        //border-radius: 3;
         color: white;
         background-color: @brand-primary;
-        //background-color: transparent;
     }
     .navbar-nav>.active>a:hover,
     .navbar-nav>.active>a:focus {
         color: white;
         background-color: darken(@brand-primary, 10%);
-        //background-color: darken(transparent, 10%);
     }
 }
 
@@ -160,14 +153,10 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-default.navbar-shrink {
         background-color: @gray-darkest;
         padding: 10px 0;
-        // .navbar-brand {
-        //     font-size: 1.5em;
-        // }
     }
 }
 
 header {
-    //background-image: url('../img/header-bg.jpg');
     background-image: url('../img/blur_green_1920.png');
     background-repeat: none;
     background-attachment: scroll;
@@ -180,7 +169,6 @@ header {
         padding-bottom: 50px;
         .intro-lead-in {
             .font-thin;
-            //font-style: italic;
             font-size: 22px;
             line-height: 22px;
             margin-bottom: 25px;
@@ -202,7 +190,6 @@ header {
             padding-bottom: 200px;
             .intro-lead-in {
                 .font-thin;
-                //font-style: italic;
                 font-size: 40px;
                 line-height: 40px;
                 margin-bottom: 25px;

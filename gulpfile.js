@@ -6,13 +6,13 @@ var minifyJs = require('gulp-uglify')
 var concat = require('gulp-concat')
 var less = require('gulp-less')
 var rename = require('gulp-rename')
-//var ngAnnotate = require('gulp-ng-annotate')
+var ngAnnotate = require('gulp-ng-annotate')
 //var server = require('gulp-server-livereload')
 //var minifyHTML = require('gulp-minify-html')
 
 var paths = {
     scripts: 'src/scripts/**/*.*',
-    styles: 'src/less/companysite.less',
+    styles: 'src/less/acompanysite.less',
     templates: 'src/templates/**/*.html',
     index: 'src/index.html',
     bower_fonts: 'src/vendor/**/*.{ttf,woff,eof,svg}',
@@ -25,20 +25,12 @@ var app = {
 }
 
 /**
- * Copy fonts to dist directory
- */
-// gulp.task('fonts', function() {
-//     return gulp.src(paths.fonts)
-//     .pipe(gulp.dest(paths.dist + 'fonts'))
-// })
-
-/**
  * Compile less
  */
 gulp.task('less', function() {
     return gulp.src(paths.styles)
     .pipe(less())
-    .pipe(concat('companysite.css'))
+    .pipe(concat('acompanysite.css'))
     .pipe(gulp.dest(paths.dist + 'css'))
 })
 
@@ -46,9 +38,9 @@ gulp.task('less', function() {
  * Minify css
  */
 gulp.task('css', ['less'], function() {
-    return gulp.src('css/companysite.css')
+    return gulp.src('css/acompanysite.css')
     .pipe(minifyCss())
-    .pipe(concat('companysite.min.css'))
+    .pipe(concat('acompanysite.min.css'))
     .pipe(gulp.dest(paths.dist + 'css'))
 })
 
@@ -81,32 +73,22 @@ gulp.task('copy-bower_fonts', function() {
 gulp.task('js', function() {
     return gulp.src(paths.scripts)
     //.pipe(minifyJs())
-    //.pipe(ngAnnotate({
-    //     add: true,
-    //     single_quotes: true
-    // }))
-    .pipe(concat('companysite.js'))
+    .pipe(ngAnnotate({
+        add: true,
+        single_quotes: true
+    }))
+    .pipe(concat('acompanysite.js'))
     .pipe(gulp.dest(paths.dist + 'js'))
 })
 
 /**
  * Handle html templates
  */
-// gulp.task('templates', function() {
-//     return gulp.src(paths.templqates)
-//     //.pipe(minifyHTML())
-//     .pipe(gulp.dest(paths.dist + 'templates'))
-// })
-
-/**
- * Serve app from ./ dir
- */
-// gulp.task('webserver', function() {
-//     gulp.src(paths.dist)
-//     .pipe(server({
-//         defaultFile: 'index.html'
-//     }))
-// })
+gulp.task('templates', function() {
+    return gulp.src(paths.templates)
+    //.pipe(minifyHTML())
+    .pipe(gulp.dest(paths.dist + 'templates'))
+})
 
 /**
  * Watches src files and runs build task if changed
@@ -123,10 +105,17 @@ gulp.task('watch', function() {
 })
 
 /**
+* Serve app from ./ dir
+*/
+// gulp.task('webserver', function() {
+//     gulp.src(paths.dist)
+//     .pipe(server({
+//         defaultFile: 'index.html'
+//     }))
+// })
+
+/**
  * Gulp tasks
  */
-//gulp.task('ui', ['fonts', 'css'])
-//gulp.task('assets', ['copy-bower_fonts'])
-//gulp.task('static', ['js', 'templates'])
-gulp.task('build', ['css', 'js', 'copy-bower_fonts', 'usemin'])
+gulp.task('build', ['css', 'js', 'templates', 'copy-bower_fonts', 'usemin'])
 gulp.task('default', ['build', 'watch'])
